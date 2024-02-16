@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class BaseRepository implements IBaseRepository
 {
-  protected $model;
+  public $model;
   private $relations;
 
   public function __construct(Model $model, array $relations = [])

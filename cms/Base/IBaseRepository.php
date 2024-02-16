@@ -5,10 +5,10 @@ namespace Cms\Base;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 
-interface IBaseRepository 
+interface IBaseRepository
 {
   public function all(): Collection;
-  public function get(): Model;
+  public function get(int $id): Model;
   public function save(Model $model): Model;
   public function delete(Model $model): Model;
 }
