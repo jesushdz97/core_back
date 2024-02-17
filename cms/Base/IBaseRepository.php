@@ -10,5 +10,5 @@ interface IBaseRepository
   public function all(): Collection;
   public function get(int $id): Model;
   public function save(Model $model): Model;
-  public function delete(Model $model): Model;
+  public function delete(int $id): Model;
 }

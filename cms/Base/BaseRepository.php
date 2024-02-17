@@ -4,44 +4,49 @@ namespace Cms\Base;
 
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
-
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpKernel\Exception\HttpException;
 
 class BaseRepository implements IBaseRepository
 {
-  public $model;
-  private $relations;
+    public Model $model;
+    private array $relations;
 
-  public function __construct(Model $model, array $relations = [])
-  {
-    $this->model = $model;
-    $this->relations = $relations;
-  }
-
-  public function all(): Collection
-  {
-    $query = $this->model->newQuery();
-
-    if (!empty($this->relations)) {
-      $query = $query->with($this->relations);
+    public function __construct(Model $model, array $relations = [])
+    {
+        $this->model = $model;
+        $this->relations = $relations;
     }
 
-    return $query->get();
-  }
+    public function all(): Collection
+    {
+        $query = $this->model->newQuery();
 
-  public function get(int $id): Model
-  {
-    return $this->model->find();
-  }
+        if (!empty($this->relations)) {
+            $query = $query->with($this->relations);
+        }
 
-  public function save(Model $model): Model
-  {
-    $model->save();
-    return $model;
-  }
+        return $query->get();
+    }
 
-  public function delete(Model $model): Model
-  {
-    $model->delete();
-    return $model;
-  }
+    public function get(int $id): Model
+    {
+        $model = $this->model->newQuery()->find($id);
+        if (!$model) throw new HttpException(Response::HTTP_NOT_FOUND, 'Resource Not Found');
+        return $model;
+    }
+
+    public function save(Model $model): Model
+    {
+        $model->save();
+        return $model;
+    }
+
+    public function delete(int $id): Model
+    {
+        $model = $this->model->newQuery()->find($id);
+        if (!$model) throw new HttpException(Response::HTTP_NOT_FOUND, 'Resource Not Found');
+        $model->delete();
+        return $model;
+    }
 }
