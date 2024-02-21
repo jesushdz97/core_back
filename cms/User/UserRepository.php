@@ -3,7 +3,7 @@
 namespace Cms\User;
 
 use App\Models\User;
-use Cms\Base\BaseRepository;
+use Cms\Base\repository\BaseRepository;
 
 class UserRepository extends BaseRepository
 {
