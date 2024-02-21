@@ -1,6 +1,6 @@
 <?php
 
-namespace Cms\Base;
+namespace Cms\Base\repository;
 
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
@@ -8,7 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 interface IBaseRepository
 {
   public function all(): Collection;
-  public function get(int $id): Model;
   public function save(Model $model): Model;
   public function delete(int $id): Model;
+  public function find(int $id): Model;
+  public function update(array $attributes, int $id): Model;
 }

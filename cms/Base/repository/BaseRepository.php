@@ -1,6 +1,6 @@
 <?php
 
-namespace Cms\Base;
+namespace Cms\Base\repository;
 
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
@@ -29,11 +29,9 @@ class BaseRepository implements IBaseRepository
         return $query->get();
     }
 
-    public function get(int $id): Model
+    public function find(int $id): Model
     {
-        $model = $this->model->newQuery()->find($id);
-        if (!$model) throw new HttpException(Response::HTTP_NOT_FOUND, 'Resource Not Found');
-        return $model;
+        return $this->model->newQuery()->find($id) ?? throw new HttpException(Response::HTTP_NOT_FOUND, 'Not Found');
     }
 
     public function save(Model $model): Model
@@ -42,10 +40,17 @@ class BaseRepository implements IBaseRepository
         return $model;
     }
 
+    public function update(array $attributes, int $id): Model
+    {
+        $model = $this->find($id);
+        $model = $model->fill($attributes);
+        $model->save();
+        return $model;
+    }
+
     public function delete(int $id): Model
     {
-        $model = $this->model->newQuery()->find($id);
-        if (!$model) throw new HttpException(Response::HTTP_NOT_FOUND, 'Resource Not Found');
+        $model = $this->find($id);
         $model->delete();
         return $model;
     }
