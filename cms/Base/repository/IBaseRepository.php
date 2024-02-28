@@ -12,4 +12,6 @@ interface IBaseRepository
   public function delete(int $id): Model;
   public function find(int $id): Model;
   public function update(array $attributes, int $id): Model;
+  public function findByAttributes(array $attributes): ?Model;
+  public function getByAttributes(array $attributes): Collection;
 }

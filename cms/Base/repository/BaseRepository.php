@@ -54,4 +54,27 @@ class BaseRepository implements IBaseRepository
         $model->delete();
         return $model;
     }
+
+    public function findByAttributes(array $attributes): ?Model
+    {
+        $query = $this->buildQueryByAttributes($attributes);
+        return $query->first();
+    }
+
+    public function getByAttributes(array $attributes): Collection
+    {
+        $query = $this->buildQueryByAttributes($attributes);
+        return $query->get();
+    }
+
+    private function buildQueryByAttributes(array $attributes)
+    {
+        $query = $this->model->newQuery();
+
+        foreach ($attributes as $field => $value) {
+            $query = $query->where($field, $value);
+        }
+
+        return $query;
+    }
 }
