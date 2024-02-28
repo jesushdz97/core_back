@@ -1,5 +1,6 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Cms\User\Controller\UserController;
 
-Route::apiResource('users', \Cms\User\Controller\UserController::class);
+Route::apiResource('users', UserController::class);
