@@ -1,6 +1,6 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use Cms\User\Controller\UserController;
+use Cms\User\Controllers\UserController;
 
-Route::apiResource('users', UserController::class);
+Route::middleware('auth:sanctum')->apiResource('users', UserController::class);

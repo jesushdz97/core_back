@@ -27,7 +27,10 @@
             "Cms\\": "cms/",
             "Database\\Factories\\": "database/factories/",
             "Database\\Seeders\\": "database/seeders/"
-        }
+        },
+        "files": [
+            "cms/Helpers/helpers.php"
+        ]
     },
     "autoload-dev": {
         "psr-4": {
