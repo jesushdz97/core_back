@@ -43,7 +43,7 @@ class RouteServiceProvider extends ServiceProvider
             ->prefix('api')
             ->group(base_path('routes/api.php'))
             ->group(base_path('cms/User/Routes/api.php'))
-            ->group(base_path('cms/auth/routes/api.php'));
+            ->group(base_path('cms/Auth/Routes/api.php'));
     }
 
     /**
