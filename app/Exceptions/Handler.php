@@ -44,8 +44,8 @@ class Handler extends ExceptionHandler
 
         return response()->json([
             'message' => 'An internal error has occurred',
+            'type' => get_class($e),
             'code' => $e->getCode(),
-            'time' => Carbon::now()->format('d-m-Y H:i:s')
         ], 500);
     }
 }

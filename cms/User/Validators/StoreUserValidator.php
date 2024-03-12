@@ -1,6 +1,6 @@
 <?php
 
-namespace Cms\User\validators;
+namespace Cms\User\Validators;
 
 use Cms\Base\validator\BaseValidator;
 

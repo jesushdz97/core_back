@@ -1,10 +1,10 @@
 <?php
 
-namespace Cms\User\Controller;
+namespace Cms\User\Controllers;
 
 use Cms\Base\controller\BaseController;
 use Cms\User\UserRepository;
-use Cms\User\validators\StoreUserValidator;
+use Cms\User\Validators\StoreUserValidator;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Validation\ValidationException;
